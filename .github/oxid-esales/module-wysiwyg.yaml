@@ -16,12 +16,15 @@ install:
   custom_script_container: |
     vendor/bin/oe-console oe:database:reset --db-host=mysql --db-port=3306 --db-name=example --db-user=root --db-password=root --force
     vendor/bin/oe-console oe:module:install ./
-    
+
     vendor/bin/oe-eshop-doctrine_migration migrations:migrate
-    
+
     vendor/bin/oe-console oe:module:activate ddoemedialibrary
     vendor/bin/oe-console oe:module:activate ddoewysiwyg
     vendor/bin/oe-console oe:theme:activate apex
+
+    mkdir -p tests/Codeception/Support/Data/generated
+    mysqldump -h mysql -u root -proot example > tests/Codeception/Support/Data/generated/dump.sql
 
 runscript: &runscript
   matrix:
@@ -54,7 +57,7 @@ sonarcloud:
   organization: 'oxid-esales'
   project_key: 'OXID-eSales_ddoe-wysiwyg-editor-module'
   project_name: 'ddoe/wysiwyg-editor-module'
-  target_branch: 'b-7.4.x'
+  target_branch: 'b-8.0.x'
   parameters: >
     -Dsonar.language=php
     -Dsonar.scm.provider=git
