@@ -48,6 +48,7 @@ final class PlaceholdersCest
         $I->waitForDocumentReadyState();
 
         $I->click("//input[@type='submit']");
+        $I->waitForPageLoad();
 
         $I->seeInDatabase('oxcontents', [
             'OXID' => md5($loadId),
@@ -87,6 +88,7 @@ final class PlaceholdersCest
         $I->waitForDocumentReadyState();
 
         $I->click("//input[@type='submit']");
+        $I->waitForPageLoad();
 
         $actualContent = $I->grabFromDatabase('oxcontents', 'OXCONTENT', ['OXID' => md5($loadId)]);
         $I->assertEquals($transformedContent, $actualContent);
