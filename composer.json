@@ -1,95 +1,93 @@
 {
-    "name":        "ddoe/wysiwyg-editor-module",
-    "description": "Summernote WYSIWYG Editor for OXID eShop.",
-    "type":        "oxideshop-module",
-    "keywords":    [
-        "oxid",
-        "modules",
-        "eShop",
-        "WYSIWYG",
-        "Summernote",
-        "Editor"
-    ],
-    "homepage":    "https://www.oxid-esales.com/",
-    "license": "proprietary",
-    "authors":     [
-        {
-            "name":  "OXID eSales AG & digidesk - media solutions",
-            "email": "info@oxid-esales.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "prefer-dist": true,
-    "require":     {
-        "php": ">=8.2",
-        "symfony/filesystem": "*",
-        "ext-gd": "*",
-        "oxid-esales/media-library-module": "dev-b-7.4.x"
-    },
-    "require-dev": {
-        "phpstan/phpstan": "^2.1",
-        "squizlabs/php_codesniffer": "3.*",
-        "oxid-esales/oxideshop-ce": "dev-b-7.4.x",
-        "phpunit/phpunit": "^11.2",
-        "codeception/codeception": "^5.0",
-        "codeception/module-asserts": "^3.0",
-        "codeception/module-db": "^3.0",
-        "codeception/module-filesystem": "^3.0",
-        "codeception/module-webdriver": "^4.0",
-        "oxid-esales/codeception-modules": "dev-b-7.4.x",
-        "oxid-esales/codeception-page-objects": "dev-b-7.4.x",
-        "oxid-esales/developer-tools": "dev-b-7.4.x",
-        "mikey179/vfsstream": "^1.6"
-    },
-    "autoload":    {
-        "psr-4": {
-            "OxidEsales\\WysiwygModule\\": "./src"
-        }
-    },
-    "autoload-dev":    {
-        "psr-4": {
-            "OxidEsales\\WysiwygModule\\Tests\\": "./tests",
-            "OxidEsales\\EshopCommunity\\Tests\\": "./vendor/oxid-esales/oxideshop-ce/tests"
-        }
-    },
-    "conflict": {
-        "oxid-esales/oxideshop-ce": "<7.4"
-    },
-    "scripts": {
-        "phpcs-report": "phpcs --standard=tests/phpcs.xml --report=json --report-file=phpcs.report.json",
-        "phpcs": "phpcs --standard=tests/phpcs.xml",
-        "phpcbf": "phpcbf --standard=tests/phpcs.xml",
-
-        "phpstan": "phpstan -ctests/PhpStan/phpstan.neon analyse src/",
-        "phpstan-report": "phpstan -ctests/PhpStan/phpstan.neon analyse src/ --error-format=json >tests/Reports/phpstan.report.json",
-
-        "phpmd": "echo 'phpmd check disabled' >phpmd.report.txt",
-        "phpmd-report": "echo '{}' >phpmd.report.json",
-
-        "static": [
-            "@phpcs",
-            "@phpstan",
-            "@phpmd"
-        ],
-
-        "tests-unit": "XDEBUG_MODE=coverage vendor/bin/phpunit --config=tests/ --testsuite=Unit --coverage-clover=tests/Reports/coverage_unit_module-wysiwyg.xml",
-        "tests-integration": "XDEBUG_MODE=coverage vendor/bin/phpunit --bootstrap=/var/www/source/bootstrap.php --config=tests/ --testsuite=Integration --coverage-clover=tests/Reports/coverage_integration_module-wysiwyg.xml",
-        "tests-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --bootstrap=/var/www/source/bootstrap.php --config=tests/ --coverage-html=tests/result/coverage",
-
-        "tests-codeception": [
-            "Composer\\Config::disableProcessTimeout",
-            "THEME_ID=apex MODULE_IDS=ddoemedialibrary,ddoewysiwyg SHOP_ROOT_PATH=/var/www vendor/bin/codecept run Acceptance -c tests/codeception.yml"
-        ]
-    },
-    "config": {
-        "github-protocols": ["https"],
-        "allow-plugins": {
-            "oxid-esales/oxideshop-unified-namespace-generator": true,
-            "oxid-esales/oxideshop-composer-plugin": true
-        },
-        "preferred-install": {
-            "oxid-esales/media-library-module": "source"
-        }
+  "name": "ddoe/wysiwyg-editor-module",
+  "description": "Summernote WYSIWYG Editor for OXID eShop.",
+  "type": "oxideshop-module",
+  "keywords": [
+    "oxid",
+    "modules",
+    "eShop",
+    "WYSIWYG",
+    "Summernote",
+    "Editor"
+  ],
+  "homepage": "https://www.oxid-esales.com/",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "OXID eSales AG & digidesk - media solutions",
+      "email": "info@oxid-esales.com"
     }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "prefer-dist": true,
+  "require": {
+    "php": ">=8.2",
+    "symfony/filesystem": "*",
+    "ext-gd": "*",
+    "oxid-esales/media-library-module": "@dev"
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^2.1",
+    "squizlabs/php_codesniffer": "3.*",
+    "oxid-esales/oxideshop-ce": "dev-b-8.0.x",
+    "phpunit/phpunit": "^11.2",
+    "codeception/codeception": "^5.0",
+    "codeception/module-asserts": "^3.0",
+    "codeception/module-db": "^3.0",
+    "codeception/module-filesystem": "^3.0",
+    "codeception/module-webdriver": "^4.0",
+    "oxid-esales/codeception-modules": "dev-b-8.0.x",
+    "oxid-esales/codeception-page-objects": "dev-b-8.0.x",
+    "oxid-esales/developer-tools": "dev-b-8.0.x",
+    "mikey179/vfsstream": "^1.6",
+    "oxid-esales/oxideshop-facts": "dev-b-8.0.x"
+  },
+  "autoload": {
+    "psr-4": {
+      "OxidEsales\\WysiwygModule\\": "./src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "OxidEsales\\WysiwygModule\\Tests\\": "./tests",
+      "OxidEsales\\EshopCommunity\\Tests\\": "./vendor/oxid-esales/oxideshop-ce/tests"
+    }
+  },
+  "conflict": {
+    "oxid-esales/oxideshop-ce": "<8.0"
+  },
+  "scripts": {
+    "phpcs-report": "phpcs --standard=tests/phpcs.xml --report=json --report-file=phpcs.report.json",
+    "phpcs": "phpcs --standard=tests/phpcs.xml",
+    "phpcbf": "phpcbf --standard=tests/phpcs.xml",
+    "phpstan": "phpstan -ctests/PhpStan/phpstan.neon analyse src/",
+    "phpstan-report": "phpstan -ctests/PhpStan/phpstan.neon analyse src/ --error-format=json >tests/Reports/phpstan.report.json",
+    "phpmd": "echo 'phpmd check disabled' >phpmd.report.txt",
+    "phpmd-report": "echo '{}' >phpmd.report.json",
+    "static": [
+      "@phpcs",
+      "@phpstan",
+      "@phpmd"
+    ],
+    "tests-unit": "XDEBUG_MODE=coverage vendor/bin/phpunit --config=tests/ --testsuite=Unit --coverage-clover=tests/Reports/coverage_unit_module-wysiwyg.xml",
+    "tests-integration": "XDEBUG_MODE=coverage vendor/bin/phpunit --bootstrap=/var/www/source/bootstrap.php --config=tests/ --testsuite=Integration --coverage-clover=tests/Reports/coverage_integration_module-wysiwyg.xml",
+    "tests-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --bootstrap=/var/www/source/bootstrap.php --config=tests/ --coverage-html=tests/result/coverage",
+    "tests-codeception": [
+      "Composer\\Config::disableProcessTimeout",
+      "THEME_ID=apex MODULE_IDS=ddoemedialibrary,ddoewysiwyg SHOP_ROOT_PATH=/var/www vendor/bin/codecept run Acceptance -c tests/codeception.yml"
+    ]
+  },
+  "config": {
+    "github-protocols": [
+      "https"
+    ],
+    "allow-plugins": {
+      "oxid-esales/oxideshop-unified-namespace-generator": true,
+      "oxid-esales/oxideshop-composer-plugin": true
+    },
+    "preferred-install": {
+      "oxid-esales/media-library-module": "source"
+    }
+  }
 }

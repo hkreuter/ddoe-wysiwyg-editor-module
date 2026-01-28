@@ -23,7 +23,7 @@ class FieldMigrationRepository implements FieldMigrationRepositoryInterface
     public function migrateTableField(string $tableName, string $fieldName, string $tableKey): void
     {
         $selectionQueryBuilder = $this->queryBuilderFactory->create();
-        $originalData = $selectionQueryBuilder->select($tableKey, $fieldName)->from($tableName)->execute();
+        $originalData = $selectionQueryBuilder->select($tableKey, $fieldName)->from($tableName)->executeQuery();
 
         $updateQueryBuilder = $this->queryBuilderFactory->create();
         $updateQueryBuilder->update($tableName)
@@ -32,9 +32,9 @@ class FieldMigrationRepository implements FieldMigrationRepositoryInterface
 
         while ($originalRow = $originalData->fetchAssociative()) {
             $updateQueryBuilder->setParameters([
-                ':newValue' => $this->migrationService->migrateContent($originalRow[$fieldName]),
-                ':keyValue' => $originalRow[$tableKey],
-            ])->execute();
+                'newValue' => $this->migrationService->migrateContent($originalRow[$fieldName]),
+                'keyValue' => $originalRow[$tableKey],
+            ])->executeStatement();
         }
     }
 }

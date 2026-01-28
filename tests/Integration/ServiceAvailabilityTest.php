@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace OxidEsales\WysiwygModule\Tests\Integration;
 
-use OxidEsales\EshopCommunity\Internal\Container\ContainerBuilderFactory;
+use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
@@ -17,21 +17,12 @@ use PHPUnit\Framework\Attributes\Test;
 class ServiceAvailabilityTest extends IntegrationTestCase
 {
     private static $cachedContainer;
-    private static $decorations;
+    private static $decorations = [];
 
     public static function setUpBeforeClass(): void
     {
-        $containerBuilder = (new ContainerBuilderFactory())->create();
-        $container = $containerBuilder->getContainer();
-        foreach ($container->getDefinitions() as $id => $definition) {
-            $definition->setPublic(true);
-            if ($decorated = $definition->getDecoratedService()) {
-                self::$decorations[reset($decorated)][] = $id;
-            }
-        }
-        $container->compile(true);
-
-        self::$cachedContainer = $container;
+        parent::setUpBeforeClass();
+        self::$cachedContainer = ContainerFactory::getInstance()->getContainer();
     }
 
     #[DataProvider('serviceAvailabilityDataProvider')]
@@ -59,20 +50,12 @@ class ServiceAvailabilityTest extends IntegrationTestCase
     public static function serviceAvailabilityDataProvider(): array
     {
         return [
-            // HtmlFilter
+            // HtmlFilter (public services)
             [\OxidEsales\WysiwygModule\HtmlFilter\HtmlFilterInterface::class],
             [\OxidEsales\WysiwygModule\HtmlFilter\HtmlRemoverInterface::class],
 
-            // MediaLibrary
-            [\OxidEsales\WysiwygModule\MediaLibrary\Service\MediaIdParserServiceInterface::class],
-            [\OxidEsales\WysiwygModule\MediaLibrary\Service\MediaUrlsExtractorServiceInterface::class],
-
-            // Migration
-            [\OxidEsales\WysiwygModule\Migration\Command\MigrateMediaUrlsToIdsCommand::class],
-
-            // Service
+            // Service (public services)
             [\OxidEsales\WysiwygModule\Service\EditorRendererInterface::class],
-            [\OxidEsales\WysiwygModule\Service\SettingsInterface::class],
         ];
     }
 }

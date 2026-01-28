@@ -24,7 +24,7 @@ class FieldMigrationRepositoryTest extends IntegrationTestCase
         $field = 'OXLONGDESC';
 
         $cleanupTableQueryBuilder = $queryBuilderFactory->create();
-        $cleanupTableQueryBuilder->delete($table)->execute();
+        $cleanupTableQueryBuilder->delete($table)->executeStatement();
 
         $originalValue = 'original value ' . uniqid();
         $expectedValue = 'migrated value ' . uniqid();
@@ -33,7 +33,7 @@ class FieldMigrationRepositoryTest extends IntegrationTestCase
         $insertQueryBuilder->insert($table)->values([
             'OXID' => $insertQueryBuilder->createNamedParameter($oxid = uniqid()),
             $field => $insertQueryBuilder->createNamedParameter($originalValue),
-        ])->execute();
+        ])->executeStatement();
 
         $migrationServiceMock = $this->createMock(MigrationServiceInterface::class);
         $migrationServiceMock->method('migrateContent')
@@ -50,8 +50,8 @@ class FieldMigrationRepositoryTest extends IntegrationTestCase
         $actualValue = $selectQueryBuilder->select($field)->from($table)
             ->where('OXID = :oxid')
             ->setParameters([
-                ':oxid' => $oxid,
-            ])->execute()->fetchOne();
+                'oxid' => $oxid,
+            ])->executeQuery()->fetchOne();
 
         $this->assertSame($expectedValue, $actualValue);
     }
