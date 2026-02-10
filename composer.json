@@ -89,5 +89,10 @@
     "preferred-install": {
       "oxid-esales/media-library-module": "source"
     }
-  }
+  },
+  "repositories": [{
+    "name": "oxid-esales/ddoe-wysiwyg-editor-module",
+    "type": "git",
+    "url": "https://github.com/hkreuter/ddoe-wysiwyg-editor-module"
+  }]
 }
