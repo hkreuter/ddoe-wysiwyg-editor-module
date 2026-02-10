@@ -25,12 +25,17 @@
     "php": ">=8.2",
     "symfony/filesystem": "*",
     "ext-gd": "*",
-    "oxid-esales/media-library-module": "dev-b-8.0.x-migrate-OXDEV-9008"
+    "oxid-esales/media-library-module": "dev-b-8.0.x-migrate-OXDEV-9008",
+    "oxid-esales/oxideshop-ce": "dev-b-8.0.x",
+    "oxid-esales/twig-component": "dev-b-8.0.x",
+    "oxid-esales/twig-admin-theme": "dev-b-8.0.x",
+    "oxid-esales/developer-tools": "dev-b-8.0.x",
+    "oxid-esales/apex-theme": "*",
+    "oxid-esales/oxideshop-demodata-ce": "dev-b-8.0.x"
   },
   "require-dev": {
     "phpstan/phpstan": "^2.1",
     "squizlabs/php_codesniffer": "3.*",
-    "oxid-esales/oxideshop-ce": "dev-b-8.0.x",
     "phpunit/phpunit": "^11.2",
     "codeception/codeception": "^5.0",
     "codeception/module-asserts": "^3.0",
@@ -39,7 +44,6 @@
     "codeception/module-webdriver": "^4.0",
     "oxid-esales/codeception-modules": "dev-b-8.0.x",
     "oxid-esales/codeception-page-objects": "dev-b-8.0.x",
-    "oxid-esales/developer-tools": "dev-b-8.0.x",
     "mikey179/vfsstream": "^1.6",
     "oxid-esales/oxideshop-facts": "dev-b-8.0.x"
   },
@@ -91,8 +95,27 @@
     }
   },
   "repositories": [{
-    "name": "oxid-esales/ddoe-wysiwyg-editor-module",
+    "name": "oxid-esales/oxideshop-demodata-ce",
     "type": "git",
-    "url": "https://github.com/hkreuter/ddoe-wysiwyg-editor-module"
+    "url": "https://github.com/OXID-eSales/oxideshop_demodata_ce"
+  },{
+    "name": "oxid-esales/apex-theme",
+    "type": "path",
+    "url": "./source/Application/views/apex",
+    "options": {
+      "symlink": true
+    }
+  },{
+    "name": "oxid-esales/twig-component",
+    "type": "git",
+    "url": "https://github.com/OXID-eSales/twig-component"
+  },{
+    "name": "oxid-esales/oxideshop-ce",
+    "type": "git",
+    "url": "https://github.com/OXID-eSales/oxideshop_ce.git"
+  },{
+    "name": "oxid-esales/media-library-module",
+    "type": "git",
+    "url": "https://github.com/hkreuter/media-library-module"
   }]
 }
