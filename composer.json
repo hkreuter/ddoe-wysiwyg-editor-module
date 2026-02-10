@@ -25,7 +25,7 @@
     "php": ">=8.2",
     "symfony/filesystem": "*",
     "ext-gd": "*",
-    "oxid-esales/media-library-module": "@dev"
+    "oxid-esales/media-library-module": "dev-b-8.0.x-migrate-OXDEV-9008"
   },
   "require-dev": {
     "phpstan/phpstan": "^2.1",
